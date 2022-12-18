@@ -1,16 +1,16 @@
 from services import Services
 from services.auth.logout.logoutService import LogoutModel
-from userData import User
+from user_data import User
 
 
 class LogoutFeature:
-    def __init__(self, services:Services, userData:User):
-        self.userData = userData
+    def __init__(self, services:Services, user_data:User):
+        self.user_data = user_data
         self.services = services
 
     def logout(self):
         return self.services.auth.logout.post(LogoutModel({
-            "token": self.userData.userData.token
+            "token": self.user_data.user_data.token
         }))
 
 

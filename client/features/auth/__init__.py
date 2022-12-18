@@ -1,14 +1,14 @@
 from features.auth.login import Login
 from features.auth.logout import Logout
-from userData import User
+from user_data import User
 
 
 class AuthFeature:
     __login = None
     __signup = None
     __logout = None
-    def __init__(self,services, userData:User):
-        self.userData = userData
+    def __init__(self,services, user_data:User):
+        self.user_data = user_data
         self.__services = services
 
     @property
@@ -20,5 +20,5 @@ class AuthFeature:
     @property
     def logout(self):
         if self.__logout is None:
-            self.__logout = Logout(self.__services,self.userData)
+            self.__logout = Logout(self.__services,self.user_data)
         return self.__logout

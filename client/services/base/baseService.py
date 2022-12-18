@@ -5,7 +5,7 @@ import socket
 import requests
 from requests import Response
 
-from userData import User
+from user_data import User
 
 
 # class for response body
@@ -30,7 +30,7 @@ class BaseService:
         self.url = url
         self.model = model
         self.host = f'http://{socket.gethostbyname(socket.gethostname())}:8000'
-        self.token = user.userData.token
+        self.token = user.user_data.token
 
 
     def _getHeaders(self):

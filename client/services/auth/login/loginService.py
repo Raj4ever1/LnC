@@ -1,5 +1,5 @@
 from services.base.baseService import BaseService, BaseModel
-from userData import User
+from user_data import User
 
 
 class LoginModel(BaseModel):

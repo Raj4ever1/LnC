@@ -1,6 +1,6 @@
 from mainClass.featureMap import FeatureMap
 from mainClass.main import Main
-from userData.userData import UserData
+from user_data.user_data import UserData
 
 
 class MainClass:
