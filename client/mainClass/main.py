@@ -21,7 +21,7 @@ class Main:
                 print(f'{index + 1}. {userOptions[index]}')
             choice = input('Enter your choice: ')
             if choice.isnumeric() and 0 < int(choice) <= len(userOptions):
-                option = (str(self.services.options.userData.userData.role) + choice)
+                option = (str(self.services.options.user_data.user_data.role) + choice)
                 choice = int(choice)
                 if option in self.featureMap.map.keys():
                     self.featureMap.map[option]()

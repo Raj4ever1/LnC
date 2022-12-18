@@ -1,5 +1,5 @@
 from services.auth.login.loginService import LoginService,LoginModel
-from userData import User, UserData
+from user_data import User, UserData
 
 
 class LoginFeature:

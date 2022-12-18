@@ -1,7 +1,7 @@
 from services.auth.login.loginService import LoginService
 from services.auth.logout.logoutService import LogoutService
 from services.auth.signup.signupService import SignupService
-from userData import User
+from user_data import User
 
 
 class Auth:
