@@ -34,6 +34,12 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'api.event',
+    'api.game',
+    'api.notification',
+    'api.team',
+    'api.match',
+    'api.schedule',
     'api.options',
     'api.authentication',
     'rest_framework',

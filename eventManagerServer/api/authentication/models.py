@@ -44,7 +44,6 @@ class User(AbstractBaseUser, PermissionsMixin, models.Model):
     last_name = models.CharField(max_length=240, null=True)
     mobile = models.CharField(max_length=10, null=True)
     address = models.CharField(max_length=240, null=True)
-    role = models.ForeignKey(Role, on_delete=models.CASCADE, null=True)
 
     is_staff = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
@@ -52,3 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin, models.Model):
     USERNAME_FIELD = 'email'
 
     objects = UserManager()
+
+class UserRoleMap(models.Model):
+    user_id = models.ForeignKey(User,on_delete=models.CASCADE)
+    role_id = models.ForeignKey(Role,on_delete=models.CASCADE)

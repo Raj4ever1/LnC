@@ -18,10 +18,10 @@ def getOptions(request):
     except:
         role = 4
     options = []
-    for option in Option.objects.filter(role = Role.objects.get(id = 4)):
+    for option in Option.objects.filter(role = Role.objects.get(id = role)):
         options.append(option.option)
     response.content = json.dumps({
-        'options': options+(['Notifications','Logout'] if role != 4 else ['Logout']),
+        'options': options+(['Notifications','Logout'] if role != 4 else ['Exit']),
     })
     response.content_type='application/json'
     return response
