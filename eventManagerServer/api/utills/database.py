@@ -1,7 +1,10 @@
 import enum
 import json
 import pyodbc
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 class DatabaseQueryStringSelect(enum.Enum):
     OPTIONS_USING_USER_ID = 'select DISTINCT(o.[option]), Concat(o.role_id,o.id) as "function_key"  from [options_option] as o,authentication_user as u, authentication_userrolemap as ur where o.role_id = ur.role_id_id and ur.user_id_id = {} ORDER BY o.[option]'
@@ -14,7 +17,7 @@ class DatabaseQuery():
         server = 'localhost' 
         database = 'LearnAndCode'#database
         username = 'ronak1' 
-        password = '17BTRCS118@' 
+        password = os.getenv('Database_password') 
         # ENCRYPT defaults to yes starting in ODBC Driver 18. It's good to always specify ENCRYPT=yes on the client side to avoid MITM attacks.
         cnxn = pyodbc.connect('DRIVER={SQL Server Native Client 11.0};Trusted_Connection=yes;SERVER='+server+';DATABASE='+database+';ENCRYPT=no;UID='+username+';PWD='+ password)
         self.cursor = cnxn.cursor()
