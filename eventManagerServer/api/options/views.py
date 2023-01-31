@@ -5,23 +5,31 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 
+from api.utills.database import DatabaseQueryStringSelect, DatabaseQuery
+ 
 from .models import Option
-from ..authentication.models import Role
+from ..authentication.models import Role, UserRoleMap
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 
 # Create your views here.
-def getOptions(request):
-    response = HttpResponse()
-    response.status_code = status.HTTP_200_OK
+@api_view(['GET'])
+def getOptions_restApi(request):
+    db = DatabaseQuery()
     try:
-        role = Token.objects.get(key = request.headers['token']).user.role.pk
+        user = Token.objects.get(key = request.headers['token']).user.pk
     except:
-        role = 4
-    options = []
-    for option in Option.objects.filter(role = Role.objects.get(id = role)):
-        options.append(option.option)
-    response.content = json.dumps({
-        'options': options+(['Notifications','Logout'] if role != 4 else ['Exit']),
-    })
-    response.content_type='application/json'
-    return response
+        user = None
+    result = db.select(DatabaseQueryStringSelect.OPTIONS_USING_USER_ID if user else DatabaseQueryStringSelect.OPTIONS_USING_ROLE_ID, user if user else 4)
+    result.append({
+                "option": "Notification",
+                "function_key": "555"
+            })
+    result.append({
+                "option": "Logout",
+                "function_key": "666"
+            }
+    )
+    return Response(json.loads(json.dumps(result)))
+

@@ -8,6 +8,7 @@ from ..utills.constraints import TransactionStatus
 # Create your models here.
 
 class Event(models.Model):
+    name = models.CharField(max_length=200,default='')
     status_options = ((element.value, element.name) for element in TransactionStatus)
     status = models.CharField(max_length=20, choices=status_options, default=TransactionStatus.NOT_STARTED)
     start_date = models.DateField()
@@ -15,6 +16,7 @@ class Event(models.Model):
     description = models.CharField(max_length=500)
     max_players = models.IntegerField(default=0)
     min_players = models.IntegerField(default=0)
+    USERNAME_FIELD = 'name'
 
 class EventGameMap(models.Model):
     event_id = models.ForeignKey(Event,on_delete=models.CASCADE)
@@ -28,4 +30,4 @@ class EventGameMap(models.Model):
     
 class EventUserMap(models.Model):
     event_id = models.ForeignKey(Event,on_delete=models.CASCADE)
-    user_id = models.ForeignKey(UserRoleMap,on_delete=models.CASCADE)
+    user_id = models.ForeignKey(UserRoleMap,on_delete=models.CASCADE,limit_choices_to={'role_id':2})

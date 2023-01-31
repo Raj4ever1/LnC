@@ -23,5 +23,5 @@ from api.authentication import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include(authUrls)),
-    path('options/', optionViews.getOptions),
+    path('options/', optionViews.getOptions_restApi),
 ]

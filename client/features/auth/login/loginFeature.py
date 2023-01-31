@@ -6,8 +6,8 @@ class LoginFeature:
 
     @staticmethod
     def login():
-        email = 'ronak.jain11@intimetec.com'#input('Enter the email: ')
-        password = '17BTRCS118@'#input('Enter the password: ')
+        email = input('Enter the email: ')#'ronak.jain11@intimetec.com'#
+        password = input('Enter the password: ')#'17BTRCS118@'#
         return LoginService(User(UserData())).post(LoginModel({
             "email" : email,
             "password": password

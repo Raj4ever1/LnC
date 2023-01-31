@@ -42,7 +42,6 @@ class BaseService:
         return headers
 
     def get(self, argument: str = None):
-
         response = requests.get(self._getFullURL(argument), headers=self._getHeaders())
         return self._formResponseBody(response)
 

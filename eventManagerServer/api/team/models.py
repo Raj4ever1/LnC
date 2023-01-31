@@ -12,8 +12,8 @@ class Team(models.Model):
 
 class Participant(models.Model):
     event_game_map_id = models.ForeignKey(EventGameMap,on_delete=models.CASCADE)
-    user_role_map_id = models.ForeignKey(UserRoleMap,on_delete=models.CASCADE)
-    team_id = models.ForeignKey(Team,on_delete=models.CASCADE)
+    user_role_map_id = models.ForeignKey(UserRoleMap,on_delete=models.CASCADE,null = True,limit_choices_to={'role_id':3},blank = True)
+    team_id = models.ForeignKey(Team,on_delete=models.CASCADE,null = True,blank = True)
 
 class TeamMember(models.Model):
     team_id = models.ForeignKey(Team,on_delete=models.CASCADE)

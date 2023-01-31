@@ -8,6 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 # from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
+from rest_framework.decorators import api_view
+from api.utills.database import DatabaseQueryStringSelect, DatabaseQuery
 
 from .models import Role
 
@@ -58,11 +60,14 @@ def loginUser(request):
             login(request, user)
             token, created = Token.objects.get_or_create(user=user)
             response.status_code = status.HTTP_200_OK
+            db = DatabaseQuery()
+            print(db.select(DatabaseQueryStringSelect.ROLES_USING_USER_ID,user.pk))
+            user_roles = [role["role_id_id"] for role in db.select(DatabaseQueryStringSelect.ROLES_USING_USER_ID,user.pk)]
             response.content = json.dumps({
                 "token": token.key,
                 "first_name": user.first_name,
                 "last_name": user.last_name,
-                "role": user.role.pk if user.role else 4,
+                "role": user_roles,
                 "email": user.email
             })
         else:
@@ -77,7 +82,7 @@ def logoutUser(request):
     response.status_code = status.HTTP_403_FORBIDDEN
     if request.method == 'POST':
         try:
-            token = Token.objects.get(key=request.headers["token"])
+            token = Token.objects.get(key=request.headers["Token"])
         except:
             token = None
         if token is not None:
