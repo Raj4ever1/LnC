@@ -1,3 +1,4 @@
+from features.auth.signup import Signup
 from features.auth.login import Login
 from features.auth.logout import Logout
 from user_data import User
@@ -22,3 +23,9 @@ class AuthFeature:
         if self.__logout is None:
             self.__logout = Logout(self.__services,self.user_data)
         return self.__logout
+    
+    @property
+    def signup(self):
+        if self.__signup is None:
+            self.__signup = Signup(self.__services, self.user_data)
+        return self.__signup

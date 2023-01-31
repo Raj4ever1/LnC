@@ -8,6 +8,6 @@ class  FeatureMap:
     @property
     def map(self):
         return {
-            '44':self.features.authFeature.logout.logoutFeature.logout,
-            '35':self.features.authFeature.logout.logoutFeature.logout
+            '666': self.features.authFeature.logout.logoutFeature.logout,
+            '11': self.features.authFeature.signup.signupFeatrue.bulk_signup,
         }

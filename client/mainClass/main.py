@@ -18,13 +18,13 @@ class Main:
         while choice != len(userOptions):
             print("*" * 30)
             for index in range(len(userOptions)):
-                print(f'{index + 1}. {userOptions[index]}')
+                print(f'{index + 1}. {userOptions[index].option}')
             choice = input('Enter your choice: ')
             if choice.isnumeric() and 0 < int(choice) <= len(userOptions):
-                option = (str(self.services.options.user_data.user_data.role) + choice)
+                option = userOptions[int(choice)-1].feature_key
                 choice = int(choice)
                 if option in self.featureMap.map.keys():
                     self.featureMap.map[option]()
                 else:
-                    print('Feature code::{}. Feature yet to be implemented::{}'.format(option,userOptions[int(choice)-1]))
+                    print('Feature code::{}. Feature yet to be implemented::{}'.format(option,userOptions[int(choice)-1].option))
 
