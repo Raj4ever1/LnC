@@ -1,7 +1,7 @@
 from django.db import models
 
 from api.game.models import Game
-from api.authentication.models import UserRoleMap
+from api.authentication.models import User
 
 from ..utills.constraints import TransactionStatus
 
@@ -30,4 +30,4 @@ class EventGameMap(models.Model):
     
 class EventUserMap(models.Model):
     event_id = models.ForeignKey(Event,on_delete=models.CASCADE)
-    user_id = models.ForeignKey(UserRoleMap,on_delete=models.CASCADE,limit_choices_to={'role_id':2})
+    user_id = models.ForeignKey(User,on_delete=models.CASCADE)

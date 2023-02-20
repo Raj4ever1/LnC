@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path,include
 from api.authentication import urls as authUrls
 from api.options import views as optionViews
+from api.event import urls as eventUrls
+from api.team import urls as teamUrls
 
 from api.authentication import views
 
@@ -24,4 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include(authUrls)),
     path('options/', optionViews.getOptions_restApi),
+    path('event/v1/',include(eventUrls)),
+    path('team/v1/',include(teamUrls)),
 ]
